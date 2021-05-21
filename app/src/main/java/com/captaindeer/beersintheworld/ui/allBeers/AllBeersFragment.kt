@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.captaindeer.beersintheworld.R
+import com.captaindeer.beersintheworld.data.local.entities.BeerEntity
 import com.captaindeer.beersintheworld.data.remote.responses.BeerResponse
 import com.captaindeer.beersintheworld.ui.adapters.BeerItemAdapter
 import com.captaindeer.beersintheworld.ui.adapters.listeners.ListenerItem
@@ -19,7 +20,7 @@ class AllBeersFragment : Fragment(), ListenerItem, AllBeersInterface.View {
     private var presenter: AllBeersPresenter? = null
     private var beerItemAdapter: BeerItemAdapter? = null
 
-    private var beers = arrayListOf<BeerResponse>()
+    private var beers = arrayListOf<BeerEntity>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +50,7 @@ class AllBeersFragment : Fragment(), ListenerItem, AllBeersInterface.View {
 
     }
 
-    override fun setBeers(beers: ArrayList<BeerResponse>) {
+    override fun setBeers(beers: ArrayList<BeerEntity>) {
         Log.e("TAG", "Funcion de setBeers ${beers.size}")
         Log.e("TAG", "Funcion de setBeers ${beers.toString()}")
         beerItemAdapter!!.updateData(beers)
