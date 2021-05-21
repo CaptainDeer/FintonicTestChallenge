@@ -25,4 +25,4 @@ data class BeerResponse(
     @SerializedName(value = "food_pairing") val food_pairing: ArrayList<String>,
     @SerializedName(value = "brewers_tips") val brewers_tips: String,
     @SerializedName(value = "contributed_by") val contributed_by: String
-): Serializable
+) : Serializable

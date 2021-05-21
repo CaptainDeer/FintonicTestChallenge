@@ -17,7 +17,7 @@ class RetrofitBuilder {
         .baseUrl("https://api.punkapi.com/v2/")
         .addConverterFactory(GsonConverterFactory.create()).client(client).build()
 
-    fun getBeers(): Call<BeerResponse> {
+    fun getBeers(): Call<ArrayList<BeerResponse>> {
         beerServices = retrofit.create(BeerServices::class.java)
         return beerServices.getBeers()
     }

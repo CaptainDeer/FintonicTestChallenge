@@ -15,18 +15,20 @@ class AllBeersPresenter(private val context: Context, private val view: AllBeers
 
     override fun getBeers() {
         if (OnLine.isNetworkAvailable(context)) {
-            retrofit.getBeers().enqueue(object : Callback<BeerResponse> {
+            retrofit.getBeers().enqueue(object : Callback<ArrayList<BeerResponse>> {
                 override fun onResponse(
-                    call: Call<BeerResponse>,
-                    response: Response<BeerResponse>
+                    call: Call<ArrayList<BeerResponse>>,
+                    response: Response<ArrayList<BeerResponse>>
                 ) {
                     when {
                         response.code() == 200 -> {
                             if (response.isSuccessful) {
                                 val beers = response.body()
 
+                                view.setBeers(response.body()!!)
 
-                                Log.e("TAG", "Beers Added ${beers.toString()}")
+
+                                // Log.e("TAG", "Beers Added ${beers.toString()}")
 
                                 /**   beerrss[i] = BeerModel(
                                 beer.id,
@@ -47,8 +49,6 @@ class AllBeersPresenter(private val context: Context, private val view: AllBeers
 
                             //    Log.e("TAG", "Beers Added ${beers.toString()}")
 
-                            //     view.setBeers(beerrss)
-
 
                         }
                         response.code() == 404 -> {
@@ -60,7 +60,7 @@ class AllBeersPresenter(private val context: Context, private val view: AllBeers
                     }
                 }
 
-                override fun onFailure(call: Call<BeerResponse>, t: Throwable) {
+                override fun onFailure(call: Call<ArrayList<BeerResponse>>, t: Throwable) {
                     view.onError("Error aqui " + t.message!!)
                     Log.e("TAG", "Error ${t.message.toString()}")
 
