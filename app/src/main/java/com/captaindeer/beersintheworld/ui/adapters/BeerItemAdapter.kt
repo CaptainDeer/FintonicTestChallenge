@@ -9,9 +9,12 @@ import com.captaindeer.beersintheworld.ui.adapters.listeners.ListenerItem
 import com.captaindeer.beersintheworld.ui.adapters.viewHolders.BeerItemViewHolder
 import com.squareup.picasso.Picasso
 
-class BeerItemAdapter(private var beers: ArrayList<BeerResponse>, private val listener: ListenerItem): RecyclerView.Adapter<BeerItemViewHolder>() {
+class BeerItemAdapter(
+    private var beers: ArrayList<BeerResponse>,
+    private val listener: ListenerItem
+) : RecyclerView.Adapter<BeerItemViewHolder>() {
 
-    fun updateData(beers: ArrayList<BeerResponse>){
+    fun updateData(beers: ArrayList<BeerResponse>) {
         this.beers = beers
         notifyDataSetChanged()
     }
@@ -27,8 +30,8 @@ class BeerItemAdapter(private var beers: ArrayList<BeerResponse>, private val li
 
         holder.name.text = beer.name.toString()
         Picasso.get().load(beer.image_url).into(holder.img)
-        holder.itemView.setOnClickListener{
-       //     id = listener.getBeerId()
+        holder.itemView.setOnClickListener {
+            //     id = listener.getBeerId()
         }
     }
 
