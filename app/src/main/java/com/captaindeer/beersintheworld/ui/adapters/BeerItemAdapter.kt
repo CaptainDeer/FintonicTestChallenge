@@ -4,17 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.captaindeer.beersintheworld.R
+import com.captaindeer.beersintheworld.data.local.entities.BeerEntity
 import com.captaindeer.beersintheworld.data.remote.responses.BeerResponse
 import com.captaindeer.beersintheworld.ui.adapters.listeners.ListenerItem
 import com.captaindeer.beersintheworld.ui.adapters.viewHolders.BeerItemViewHolder
 import com.squareup.picasso.Picasso
 
 class BeerItemAdapter(
-    private var beers: ArrayList<BeerResponse>,
+    private var beers: ArrayList<BeerEntity>,
     private val listener: ListenerItem
 ) : RecyclerView.Adapter<BeerItemViewHolder>() {
 
-    fun updateData(beers: ArrayList<BeerResponse>) {
+    fun updateData(beers: ArrayList<BeerEntity>) {
         this.beers = beers
         notifyDataSetChanged()
     }

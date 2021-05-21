@@ -1,7 +1,8 @@
 package com.captaindeer.beersintheworld.ui.allBeers
 
 import android.content.Context
-import android.util.Log
+import com.captaindeer.beersintheworld.data.local.LocalDatabase
+import com.captaindeer.beersintheworld.data.local.entities.BeerEntity
 import com.captaindeer.beersintheworld.data.remote.RetrofitBuilder
 import com.captaindeer.beersintheworld.data.remote.responses.BeerResponse
 import com.captaindeer.beersintheworld.utils.OnLine
@@ -12,6 +13,7 @@ import retrofit2.Response
 class AllBeersPresenter(private val context: Context, private val view: AllBeersInterface.View) :
     AllBeersInterface.Presenter {
     private val retrofit = RetrofitBuilder()
+    private val database = LocalDatabase(context)
 
     override fun getBeers() {
         if (OnLine.isNetworkAvailable(context)) {
@@ -24,32 +26,20 @@ class AllBeersPresenter(private val context: Context, private val view: AllBeers
                         response.code() == 200 -> {
                             if (response.isSuccessful) {
                                 val beers = response.body()
-
-                                view.setBeers(response.body()!!)
-
-
-                                // Log.e("TAG", "Beers Added ${beers.toString()}")
-
-                                /**   beerrss[i] = BeerModel(
-                                beer.id,
-                                beer.name,
-                                beer.description,
-                                beer.image_url,
-                                beer.method.fermentation.temp.value,
-                                beer.method.fermentation.temp.unit,
-                                beer.brewers_tips,
-                                beer.contribuited_by
-                                )
-                                 */
-
-                                // view.setBeers(beers)
-
+                                beers?.forEach { beer ->
+                                    database.productDao().insert(
+                                        BeerEntity(
+                                            beer.id,
+                                            beer.name,
+                                            beer.description,
+                                            beer.image_url,
+                                            beer.brewers_tips,
+                                            beer.contributed_by
+                                        )
+                                    )
+                                }
+                                view.setBeers(database.productDao().updatePosts() as ArrayList)
                             }
-
-
-                            //    Log.e("TAG", "Beers Added ${beers.toString()}")
-
-
                         }
                         response.code() == 404 -> {
                             view.onError("Something is wrong. Try again please. 404")
@@ -61,13 +51,12 @@ class AllBeersPresenter(private val context: Context, private val view: AllBeers
                 }
 
                 override fun onFailure(call: Call<ArrayList<BeerResponse>>, t: Throwable) {
-                    view.onError("Error aqui " + t.message!!)
-                    Log.e("TAG", "Error ${t.message.toString()}")
-
+                    view.onError(t.message!!)
                 }
             })
         } else {
             view.onError("No internet detected.")
+            view.setBeers(database.productDao().updatePosts() as ArrayList)
         }
     }
 
