@@ -7,6 +7,6 @@ import retrofit2.http.GET
 interface BeerServices {
 
     @GET(value = "beers?page=10")
-    fun getBeers(): Call<BeerResponse>
+    fun getBeers(): Call<ArrayList<BeerResponse>>
 
 }
