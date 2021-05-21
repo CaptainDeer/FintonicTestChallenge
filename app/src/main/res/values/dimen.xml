@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Text size -->
+    <dimen name="title_size">24sp</dimen>
+
+    <!-- Item beer .xml -->
+    <dimen name="width_size">200dp</dimen>
+    <dimen name="height_size">200dp</dimen>
+    <dimen name="img_height_size">130dp</dimen>
+    <dimen name="margin">5dp</dimen>
+    <dimen name="padding">4dp</dimen>
+
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BeersInTheWorld</string>
+    <string name="beer_name">Beer name</string>
+</resources>
