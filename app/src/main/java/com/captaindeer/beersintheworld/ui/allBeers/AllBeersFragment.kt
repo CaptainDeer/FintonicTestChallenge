@@ -22,7 +22,6 @@ class AllBeersFragment : Fragment(), ListenerItem, AllBeersInterface.View {
 
     private var beers = arrayListOf<BeerEntity>()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,7 +34,6 @@ class AllBeersFragment : Fragment(), ListenerItem, AllBeersInterface.View {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_all_beers, container, false)
     }
 
@@ -47,12 +45,19 @@ class AllBeersFragment : Fragment(), ListenerItem, AllBeersInterface.View {
         rv_all_beers.adapter = beerItemAdapter
 
         presenter!!.getBeers()
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter!!.onCancel()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        presenter!!.onCancel()
     }
 
     override fun setBeers(beers: ArrayList<BeerEntity>) {
-        Log.e("TAG", "Funcion de setBeers ${beers.size}")
-        Log.e("TAG", "Funcion de setBeers ${beers.toString()}")
         beerItemAdapter!!.updateData(beers)
     }
 

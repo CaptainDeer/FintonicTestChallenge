@@ -4,6 +4,7 @@ import com.captaindeer.beersintheworld.data.remote.responses.BeerResponse
 import com.captaindeer.beersintheworld.data.remote.services.BeerServices
 import okhttp3.OkHttpClient
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -17,7 +18,7 @@ class RetrofitBuilder {
         .baseUrl("https://api.punkapi.com/v2/")
         .addConverterFactory(GsonConverterFactory.create()).client(client).build()
 
-    fun getBeers(): Call<ArrayList<BeerResponse>> {
+    suspend fun getBeers(): Response<ArrayList<BeerResponse>> {
         beerServices = retrofit.create(BeerServices::class.java)
         return beerServices.getBeers()
     }
