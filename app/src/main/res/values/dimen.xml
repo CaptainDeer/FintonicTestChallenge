@@ -2,13 +2,26 @@
 <resources>
 
     <!-- Text size -->
+    <dimen name="big_title_size">28sp</dimen>
     <dimen name="title_size">24sp</dimen>
+    <dimen name="normal_size">18sp</dimen>
+    <dimen name="mini_size">14sp</dimen>
 
     <!-- Item beer .xml -->
-    <dimen name="width_size">200dp</dimen>
-    <dimen name="height_size">200dp</dimen>
-    <dimen name="img_height_size">130dp</dimen>
+    <dimen name="rv_height">450dp</dimen>
+    <dimen name="img_height_size">350dp</dimen>
     <dimen name="margin">5dp</dimen>
     <dimen name="padding">4dp</dimen>
+    
+    <!-- List beer .xml -->
+    <dimen name="height_size">180dp</dimen>
+    <dimen name="img_height">140dp</dimen>
+    <dimen name="img_width">90dp</dimen>
+
+    <!-- BeerDetail -->
+    <dimen name="img_detail_width">150dp</dimen>
+    <dimen name="img_detail_height">280dp</dimen>
+    <dimen name="tv_detail_width">180dp</dimen>
+    <dimen name="tv_detail_big_width">340dp</dimen>
 
 </resources>

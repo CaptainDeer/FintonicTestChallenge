@@ -13,6 +13,7 @@ interface AllBeersInterface {
 
     interface View : BaseView {
         fun setBeers(beers: ArrayList<BeerEntity>)
+        fun setListBeers(beers: ArrayList<BeerEntity>)
     }
 
 }
