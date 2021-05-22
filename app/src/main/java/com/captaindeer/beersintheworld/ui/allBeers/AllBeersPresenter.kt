@@ -39,6 +39,9 @@ class AllBeersPresenter(private val context: Context, private val view: AllBeers
                     withContext(Dispatchers.Main){
                         view.setBeers(database.productDao().updatePosts() as ArrayList)
                     }
+                    withContext(Dispatchers.Main){
+                        view.setListBeers(database.productDao().updatePosts() as ArrayList)
+                    }
                 }else{
                     view.onError(response.errorBody().toString())
                 }
@@ -46,6 +49,7 @@ class AllBeersPresenter(private val context: Context, private val view: AllBeers
         } else {
             view.onError("No internet detected.")
             view.setBeers(database.productDao().updatePosts() as ArrayList)
+            view.setListBeers(database.productDao().updatePosts() as ArrayList)
         }
     }
 
